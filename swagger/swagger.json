@@ -1,0 +1,314 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "E-Book Store App",
+        "description": "this is a E-Book App Swagger to access rest API server",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags":[{
+        "name":"book-controller",
+        "description":"books controller api"
+    },
+{
+    "name":"customer-details-controller",
+    "description":"customer controller api"
+}],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/ebookstore/book": {
+            "post": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary":"Add book to the system",
+                "description": "Create New Book Data in system",
+                "parameters":[
+                    {
+                    "name": "bookData",
+                    "in": "body",
+                    "description": "Book data that we want to create",
+                    "schema": {
+                       "$ref":"#/definitions/Books"                  }
+                }
+            ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "new book added",
+                        "schema": {
+                            "$ref":"#/definitions/Books"                            }
+                    }
+                }
+            }
+        },
+        "/ebookstore/books": {
+            "post": {
+                "tags": [
+                     "book-controller"
+                ],
+                "summary": "Get Books in System",
+                "description":"Get all the books from system",
+                "parameters": [{
+                    "name":"bookData",
+                    "in":"body",
+                    "description":"Books we want to see",
+                    "schema":{
+                        "$ref":"#/definitions/AllBooks"
+                    }
+                }], "produces":[
+                    "application/json"
+                ],
+                "responses":{"200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/definitions/AllBooks"
+                    }
+                  }
+                
+                  
+                } 
+            }
+
+        },
+        "/ebookstore/search": {
+            "post": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "Get Searched Book in System",
+                "description":"Get Searched Book",
+                "parameters": [{
+                    "name":"bookData",
+                    "in":"body",
+                    "description":"Get Searched Book",
+                    "schema":{
+                        "$ref":"#/definitions/DesiredBooks"
+                    }
+                }], "produces":[
+                    "application/json"
+                ],
+                "responses":{"200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/definitions/DesiredBooks"
+                    }
+                  }
+                
+                  
+                }
+            }
+
+        },
+        "/ebookstore/sort": {
+            "get": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "Get all Books in System according to Relevance Attribute",
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/definitions/Books"
+                    }
+                  }
+                }
+            }
+
+        },
+        "/ebookstore/books/count": {
+            "get": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "Get Number of Books in System",
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/definitions/Books"
+                    }
+                  }
+                }
+            }
+
+        },
+        "/ebookstore/image": {
+            "get": {
+                "tags": [
+                    "book-controller"
+                ],
+                "description":"Get the image for displaying",
+                "summary": "Get image for the Books",
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/definitions/Books"
+                    }
+                  }
+                }
+            }
+
+        },
+        "/ebookstore/userdetails": {
+            "post": {
+                "tags": [
+                    "customer-details-controller"
+                ],
+                "description":"get user data",
+                "summary":"Gets customer details",
+                "parameters":[{
+                    "name": "userData",
+                    "in": "body",
+                    "description": "Create user and add the information",
+                    "schema": {
+                        "$ref":"#/definitions/Users"                        
+                    }
+                }], "produces":[
+                    "application/json"
+                ],
+                "responses":{"200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/definitions/Users"
+                    }
+                  }
+                
+                  
+                }
+            }
+
+        }
+    },
+    "definitions":{
+        "DesiredBooks":{
+            "required":[
+                "TITLE"
+            ],
+            "properties":{
+               "TITLE":{
+                "type":"string",
+                "uniqueItems":"true"
+               }
+            }
+        },
+        "AllBooks":{
+            "required":[
+                "page"
+            ],
+            "properties":{
+                "page":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                }
+            }
+        },
+        "Books":{
+            "required":[
+                "TITLE",
+                "AUTHOR",
+                "YEAR",
+                "DESCRIPTION",
+                "RATING",
+                "PRICE",
+                "NOOFCOUNT",
+                "IMAGEURL"
+            ],
+            "properties":{
+                "TITLE":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "AUTHOR":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "YEAR":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                },
+                "DESCRIPTION":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "RATING":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                },
+                "PRICE":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                },
+                "NOOFCOUNT":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                },
+                "IMAGEURL":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                }
+            }
+        },
+        "Users":{
+            "required":[
+                "NAME",
+                "PHONE_NO",
+                "PIN",
+                "LOCALITY",
+                "ADDRESS",
+                "CITY_TOWN",
+                "LANDMARK"
+            ],
+            "properties":{
+                "NAME":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "PHONE_NO":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                },
+                "PIN":{
+                    "type":"number",
+                    "uniqueItems":"true"
+                },
+                "LOCALITY":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "ADDRESS":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "CITY_TOWN":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                },
+                "LANDMARK":{
+                    "type":"string",
+                    "uniqueItems":"true"
+                }
+
+            }
+        }
+    }
+}
+
+
