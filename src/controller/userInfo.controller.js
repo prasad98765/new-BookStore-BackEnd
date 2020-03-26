@@ -59,10 +59,7 @@ exports.sendMail = (req,res) =>{
   var books = []
   books = req.body.BOOKS
   console.log("in controller------------------->",books);
-  
-  console.log("in --->",req.body.BOOKS[0]);
-  
-  USER_INFO_SERVICE.sendMail({EMAIL : req.body.EMAIL,ID:req.body.ID,BOOKS: req.body.BOOKS},(err,data)=>{
+  USER_INFO_SERVICE.sendMail({EMAIL : req.body.EMAIL,ID:req.body.ID},(err,data)=>{
     if (err) {
       Response = {
         success: "validetion false"

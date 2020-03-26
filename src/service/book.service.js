@@ -1,5 +1,4 @@
 const BOOK_MODULE = require("../../src/model/book.model");
-
 exports.create = (bookData, callback) => {
   BOOK_MODULE.create(bookData, function(err, data) {
     if (err) {
@@ -9,7 +8,7 @@ exports.create = (bookData, callback) => {
   });
 };
 
-exports.getAllBooks = (page, callback) => { 
+exports.getAllBooks = (page, callback) => {
   BOOK_MODULE.getAllBooks(page, function(err, data) {
     if (err) {
       callback(err);
@@ -47,28 +46,47 @@ exports.updateCount = (data, callBack) => {
 };
 
 exports.sortAllBooksByDecPrice = (obj, callback) => {
-  if (obj.SORT == 'lowToHigh') {
+  EndLimit = obj.page * 12;
+  StartLimit = (obj.page - 1) * 12;
+  var books = [];
+  if (obj.SORT == "lowToHigh") {
     BOOK_MODULE.sortAllBooksByDecPrice(obj, (err, data) => {
       if (err) {
         return callback(err);
       }
-      return callback(null, data);
+      for (var i = StartLimit; i < EndLimit; i++) {
+        if (data[i] == null) {
+          break;
+        }
+        books.push(data[i]);
+      }
+      callback(null, books);
     });
-  }
-  else if (obj.SORT == 'highToLow') {
+  } else if (obj.SORT == "highToLow") {
     BOOK_MODULE.sortAllBooksByAscPrice(obj, (err, data) => {
       if (err) {
         return callback(err);
       }
-      return callback(null, data);
+      for (var i = StartLimit; i < EndLimit; i++) {
+        if (data[i] == null) {
+          break;
+        }
+        books.push(data[i]);
+      }
+      callback(null, books);
     });
-  }
- else if (obj.SORT == 'sortArrival') {
+  } else if (obj.SORT == "sortArrival") {
     BOOK_MODULE.sortAllBooksByNewArrival(obj, (err, data) => {
       if (err) {
         return callback(err);
       }
-      return callback(null, data);
+      for (var i = StartLimit; i < EndLimit; i++) {
+        if (data[i] == null) {
+          break;
+        }
+        books.push(data[i]);
+      }
+      callback(null, books);
     });
   }
 };
@@ -79,6 +97,18 @@ exports.findone = (obj, callback) => {
     }
     return callback(null, data);
   });
+};
+exports.getsortData = (data, page) => {
+  StartLimit = (page - 1) * 12;
+  EndLimit = page * 12;
+  var books = [];
+  for (var i = StartLimit; i < EndLimit; i++) {
+    if (data[i] == null) {
+      break;
+    }
+    books.push(this.data[i]);
+  }
+  return books;
 };
 
 exports.getCount = (obj, callback) => {

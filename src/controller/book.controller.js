@@ -124,9 +124,9 @@ exports.searchBook = async (req, res) => {
 
 exports.sortAllBooks = (req, res) => {
   try {
-    console.log(req.params.field);
+    console.log(req.body.field);
     BOOK_SERVICE.sortAllBooksByDecPrice(
-      { SORT: req.params.field },
+      { SORT: req.body.field ,page :req.body.page},
       (err, data) => {
         if (err) {
           response = {
@@ -141,7 +141,6 @@ exports.sortAllBooks = (req, res) => {
             message: "successfully calculated",
             data: data
           };
-          console.log("response--> ", response);
           res.status(200).send(response);
         }
       }

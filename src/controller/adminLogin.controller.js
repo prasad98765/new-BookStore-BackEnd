@@ -11,7 +11,7 @@ exports.createAdminLogin = (req, res) => {
         })
     }
     req.checkBody("NAME").exists()
-    req.checkBody("EMAIL").exists()
+    req.checkBody("NAME").exists()
     req.checkBody("MOBILENO").exists()
     req.checkBody("PASSWORD").exists()    
 
@@ -60,11 +60,10 @@ exports.login = (req, res) => {
           res.status(500).send(response);
         }
         response = {
-          success: true,
-          data: data
+          data: true,
         };
         console.log("in crontoller ------>", data);
-        res.status(200).send(data);
+        res.status(200).send(response);
       })
     })
   }catch (err) {

@@ -21,12 +21,15 @@ module.exports = app => {
   app.post("/ebookstore/book", BOOK_CONTROLLER.create);
   app.post("/ebookstore/books", BOOK_CONTROLLER.getAllBooks);
   app.post("/ebookstore/search", BOOK_CONTROLLER.searchBook);
-  app.get("/ebookstore/sort/:field", BOOK_CONTROLLER.sortAllBooks);
+  app.post("/ebookstore/sort", BOOK_CONTROLLER.sortAllBooks);
   app.get("/ebookstore/books/count", BOOK_CONTROLLER.getCount);
   app.post("/userDetails", USER_INFO_CONTROLLER.userDetails);
   app.post("/ebookstore/adminDetails" , ADMIN_LOGIN_CONTROLLER.createAdminLogin)
   app.get("/ebookstore/adminLogin" , ADMIN_LOGIN_CONTROLLER.login)
   app.post("/ebookstore/sendEmail",  USER_INFO_CONTROLLER.sendMail)
+  app.post("/userdetails", USER_INFO_CONTROLLER.userDetails);
+  app.post("/ebookstore/admindetails" , ADMIN_LOGIN_CONTROLLER.createAdminLogin)
+  app.post("/ebookstore/adminlogin" , ADMIN_LOGIN_CONTROLLER.login)
   app.post("/image", upload.single("filePath"), (req, res, next) => {
     res.send({
       type: "GET",
