@@ -1,11 +1,12 @@
 const USER_INFO_SERVICE = require("../service/userInfo.service");
 let response = {};
 exports.userDetails = (req, res) => {
+  console.log(req.body);
+  
   try {
     req.checkBody("NAME").exists();
     req
       .checkBody("PHONE_NO")
-      .isNumeric()
       .exists();
     req
       .checkBody("PIN")
@@ -18,6 +19,8 @@ exports.userDetails = (req, res) => {
     req.checkBody("TYPE").exists();
     const error = req.validationErrors();
     if (error) {
+      console.log("in validetion error");
+      
       Response = {
         success: "validetion false"
       };
@@ -34,6 +37,8 @@ exports.userDetails = (req, res) => {
         TYPE : req.body.TYPE
       };
     }
+    console.log(userObj);
+    
     USER_INFO_SERVICE.userDetails(userObj, (err, data) => {
       if (err) {
         response = {
@@ -57,9 +62,14 @@ exports.userDetails = (req, res) => {
 
 exports.sendMail = (req,res) =>{
   var books = []
-  books = req.body.BOOKS
-  console.log("in controller------------------->",books);
-  USER_INFO_SERVICE.sendMail({EMAIL : req.body.EMAIL,ID:req.body.ID},(err,data)=>{
+  var obj = {
+    EMAIL : req.body.EMAIL,
+    ID:req.body.ID,
+    Name : req.body.Name,
+    Address : req.body.Address,
+    Books : req.body.Books
+  }
+  USER_INFO_SERVICE.sendMail(obj,(err,data)=>{
     if (err) {
       Response = {
         success: "validetion false"
@@ -67,6 +77,5 @@ exports.sendMail = (req,res) =>{
       res.status(500).send(Response);
     }
     res.send(data)
-    
   })
 }

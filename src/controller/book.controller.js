@@ -29,8 +29,6 @@ exports.create = (req, res) => {
             .exists();
           const error = req.validationErrors();
           if (error) {
-            console.log("in errorrr");
-
             Response = {
               success: "validetion false"
             };
@@ -58,8 +56,6 @@ exports.create = (req, res) => {
                 success: true,
                 data: data
               };
-              console.log("in crontoller ------>", data[0]);
-
               res.status(200).send(data);
             });
           }
@@ -126,7 +122,7 @@ exports.sortAllBooks = (req, res) => {
   try {
     console.log(req.body.field);
     BOOK_SERVICE.sortAllBooksByDecPrice(
-      { SORT: req.body.field ,page :req.body.page},
+      { SORT: req.body.field, page: req.body.page },
       (err, data) => {
         if (err) {
           response = {

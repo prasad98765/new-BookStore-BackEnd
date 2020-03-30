@@ -98,19 +98,6 @@ exports.findone = (obj, callback) => {
     return callback(null, data);
   });
 };
-exports.getsortData = (data, page) => {
-  StartLimit = (page - 1) * 12;
-  EndLimit = page * 12;
-  var books = [];
-  for (var i = StartLimit; i < EndLimit; i++) {
-    if (data[i] == null) {
-      break;
-    }
-    books.push(this.data[i]);
-  }
-  return books;
-};
-
 exports.getCount = (obj, callback) => {
   BOOK_MODULE.getCount(obj, (err, data) => {
     if (err) {

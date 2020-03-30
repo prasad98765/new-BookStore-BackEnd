@@ -12,8 +12,6 @@ const ADMINSCHEMA = MONGOOSE.Schema(
 const SCHEMA_ADMIN_LOGIN = MONGOOSE.model("Admin Login", ADMINSCHEMA);
 
 exports.create = (AdminData, callback) => {
-  console.log("in model------>",AdminData);
-  
   const ADMINDETAILS = new SCHEMA_ADMIN_LOGIN();
   ADMINDETAILS.NAME = AdminData.NAME;
   ADMINDETAILS.EMAIL = AdminData.EMAIL;

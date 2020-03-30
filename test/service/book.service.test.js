@@ -76,7 +76,7 @@ describe("Book testcases", function () {
 
     let books = obj.body;
     SINON.stub(BOOK_MODULE, "sortAllBooksByAscPrice").yields(null, books);
-    BOOK_SERVICE.sortAllBooksByAscPrice(books, function (err, data) {
+    BOOK_SERVICE.sortAllBooksByDecPrice(books, function (err, data) {
       if (err) {
         ASSERT.equal(err, "Error while Storing User Details..");
       }
@@ -119,49 +119,6 @@ describe("Book testcases", function () {
     })
   })
 })
-
-describe("Book testcases", function () {
-  it("When given sort by high-low relevance should return proper data", function () {
-    let obj = {
-      body: [
-        {
-          TITLE: "Cindrella and the Magical Pumpkin",
-          AUTHOR: "Great Granny",
-          YEAR: 1997,
-          DESCRIPTION: "my favorite one",
-          RATING: 4.5,
-          PRICE: 300
-        }, {
-          TITLE: "Annabella comes home",
-          AUTHOR: "M.D MAthews",
-          YEAR: 1990,
-          DESCRIPTION: "The horror and realistic story based novel",
-          RATING: 4.1,
-          PRICE: 250
-        },
-        {
-          TITLE: "Three mistakes of My Life",
-          AUTHOR: "PV Kotwal",
-          YEAR: 2001,
-          DESCRIPTION: "The Motivational Novel for youngsters",
-          RATING: 4.1,
-          PRICE: 210
-        }
-      ]
-    };
-
-    let books = obj.body;
-    SINON.stub(BOOK_MODULE, "sortAllBooksByNewArrival").yields(null, books);
-    BOOK_SERVICE.sortAllBooksByNewArrival(books, function (err, data) {
-      if (err) {
-        ASSERT.equal(err, "Error while Storing User Details..");
-      }
-      ASSERT.equal(data, books);
-      BOOK_MODULE.sortAllBooksByNewArrival.restore();
-    })
-  })
-})
-
 
 describe("Users testcases", function () {
   it("When given correct user data should Save data", function () {
@@ -566,7 +523,4 @@ describe("Users testcases", function () {
     })
   });
 
-
 });
-
-

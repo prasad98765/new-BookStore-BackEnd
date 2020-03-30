@@ -107,7 +107,6 @@ exports.findone = (data, callback) => {
       if (err) {
         return callback(false);
       }
-      console.log("find data=========>", data);
       return callback(null, true);
     }
   );

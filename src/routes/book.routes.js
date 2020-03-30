@@ -27,7 +27,6 @@ module.exports = app => {
   app.post("/ebookstore/adminDetails" , ADMIN_LOGIN_CONTROLLER.createAdminLogin)
   app.get("/ebookstore/adminLogin" , ADMIN_LOGIN_CONTROLLER.login)
   app.post("/ebookstore/sendEmail",  USER_INFO_CONTROLLER.sendMail)
-  app.post("/userdetails", USER_INFO_CONTROLLER.userDetails);
   app.post("/ebookstore/admindetails" , ADMIN_LOGIN_CONTROLLER.createAdminLogin)
   app.post("/ebookstore/adminlogin" , ADMIN_LOGIN_CONTROLLER.login)
   app.post("/image", upload.single("filePath"), (req, res, next) => {

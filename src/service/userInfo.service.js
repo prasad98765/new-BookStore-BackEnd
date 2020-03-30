@@ -9,7 +9,6 @@ exports.userDetails = (obj, callback) => {
   });
 };
 exports.sendMail = (data, callback) => {
-  console.log("in servie------>",data.BOOKS);
   var transporter = nodemailer.createTransport({
     service: "gmail",
     secure:true,
@@ -23,9 +22,9 @@ exports.sendMail = (data, callback) => {
   var mailOptions = {
     from: "dabhade904@gmail.com",
     to: data.EMAIL,
-    subject: "",
-    text:"Dear Customer(or name of the customer Thank you for ordering (book name). Your order has been placed successfully.Your order will arrive in 10-12 days on your address (address of the customer) with shipping id will be" + data.ID
-  };
+    subject: "order placed........",
+    text:"Dear " + data.Name + " Thank you for ordering " + data.Books + " Book So that Your order has been placed successfully.Your order will arrive in 3-5 days on your address " + data.Address + " with shipping id will " + data.ID 
+  }
 
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
